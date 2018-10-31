@@ -1,7 +1,7 @@
 ## Perfect Match: A Simple Method for Learning Representations For Counterfactual Inference With Neural Networks
 
 Perfect Match (PM) is a method for learning to estimate individual treatment effect (ITE) using neural networks. PM is easy to implement,
-compatible with any architecture, does not add computational complexity or hyperparameters, and extends to any number of treatments. This repository contains the source code used to evaluate PM and most of the existing state-of-the-art methods at the time of publication of [our manuscript](https://arxiv.org/abs/1810.00656) (Oct 2018). PM and the presented experiments are described in detail in [our paper](https://arxiv.org/abs/1810.00656). Since we performed one of the most comprehensive evaluations to date with four different datasets with varying characteristics, this repository may serve as a benchmark suite for developing your own methods for estimating causal effects using machine learning methods. In particular, the source code is designed to be easily extensible with (1) new methods and (2) new benchmark datasets.
+compatible with any architecture, does not add computational complexity or hyperparameters, and extends to any number of treatments. This repository contains the source code used to evaluate PM and most of the existing state-of-the-art methods at the time of publication of [our manuscript](https://arxiv.org/abs/1810.00656) (Oct 2018). PM and the presented experiments are described in detail in our paper. Since we performed one of the most comprehensive evaluations to date with four different datasets with varying characteristics, this repository may serve as a benchmark suite for developing your own methods for estimating causal effects using machine learning methods. In particular, the source code is designed to be easily extensible with (1) new methods and (2) new benchmark datasets.
 
 Author(s): Patrick Schwab, ETH Zurich <patrick.schwab@hest.ethz.ch>, Lorenz Linhardt, ETH Zurich <llorenz@student.ethz.ch> and Walter Karlen <walter.karlen@hest.ethz.ch>
 
@@ -33,6 +33,7 @@ If you reference or use our methodology, code or results in your work, please co
 
 - This project was designed for use with Python 2.7. We can not guarantee and have not tested compability with Python 3.
 - To run the TCGA and News benchmarks you need to download the SQLite databases containing the raw data samples for these benchmarks (`news.db` and `tcga.db`).
+    - You can download the raw data under these links: [tcga.db](https://polybox.ethz.ch/index.php/s/OrwKOXHToZfxVyE) and [news.db](https://polybox.ethz.ch/index.php/s/fRQZREF528AfD5Z).
     - Note that you need around 10GB of free disk space to store the databases.
     - Save the database files to the `./data` directory relative to this file in order to be compatible with the step-by-step guides below.
 - To run BART, Causal Forests and to reproduce the figures you need to have [R](https://www.r-project.org/) installed. See https://www.r-project.org/ for installation instructions.
@@ -41,7 +42,7 @@ If you reference or use our methodology, code or results in your work, please co
     - To reproduce the paper's figures, you need to have the R-package `latex2exp` installed. See https://cran.r-project.org/web/packages/latex2exp/vignettes/using-latex2exp.html for installation instructions.
 - For the python dependencies, see `setup.py`. You can use `pip install .` to install the python dependencies. Note the installation of `rpy2` will fail if you do not have a working R installation on your system (see above).
 
-#### Reproduction
+#### Reproducing the experiments
 
 - Make sure you have all the requirements listed above.
 - You can use the script `perfect_match/apps/run_all_experiments.py` to obtain the exact parameters used with `main.py` to reproduce the experimental results in [our paper](https://arxiv.org/abs/1810.00656).
