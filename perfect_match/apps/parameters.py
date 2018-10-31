@@ -90,9 +90,10 @@ def parse_parameters():
                         help="Supervised loss weight beta for the ITE block when using method = GANITE.")
 
     parser.add_argument("--benchmark", default="tcga",
-                        help="Benchmark dataset to use. One of ['twins', 'tcga'].")
+                        help="Benchmark dataset to use. One of ['news', 'tcga', 'ihdp', 'jobs'].")
     parser.add_argument("--method", default="ols1",
-                        help="Method to use. One of ['ols1', 'ols2', 'cf', 'rf', 'bart', 'nn'].")
+                        help="Method to use. One of "
+                             "['knn', 'ols1', 'ols2', 'cf', 'rf', 'bart', 'nn', 'nn+', 'xgb', 'gp', 'psm', 'ganite'].")
 
     parser.set_defaults(with_rnaseq=False)
     parser.add_argument("--with_rnaseq", dest='with_rnaseq', action='store_true',
@@ -100,7 +101,7 @@ def parse_parameters():
     parser.set_defaults(use_tarnet=True)
     parser.add_argument("--do_not_use_tarnet", dest='use_tarnet', action='store_false',
                         help="Whether or not to use the TARNET architecture.")
-
+    
     parser.set_defaults(do_train=False)
     parser.add_argument("--do_train", dest='do_train', action='store_true',
                         help="Whether or not to train a model.")
