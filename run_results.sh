@@ -3,7 +3,7 @@
 # The root folder for which to calculate the summary measures for a given model,
 # e.g. /some/directory/pm_news16a7k_cfrnet_mse_1
 # The root folder must contain the individual run data (./run_$i/run.txt)
-FOLDER_NAME="$1"
+FOLDER_PATH="$1"
 
 # Flag indicating what kind of evaluation measures were used.
 # Three options:
@@ -17,12 +17,11 @@ FOLDER_NAME="$1"
 #                         the outputs are R_{Pol}(\pi) mean +- std and \eps_{ATT} mean +- std,
 #                         used for the Jobs dataset
 IS_BINARY="$2"
-FOLDER_PATH="/cluster/work/karlen/models/$FOLDER_NAME"
 
-export PYTHONPATH="/cluster/home/schwabpa/bin/perfect_match/:$PYTHONPATH"
+export PYTHONPATH="./perfect_match/:$PYTHONPATH"
 # The following command merges all run files for repeated runs (run_$i/run.txt)
 # into a single summary file ($FOLDER_PATH/summary.txt).
-python /cluster/home/schwabpa/bin/subtyping/subtyping/apps/main.py --dataset=/cluster/scratch/schwabpa/tcga --with_rnaseq --do_train --do_hyperopt --num_hyperopt_runs=10 --do_evaluate --fraction_of_data_set=1.00 --num_units=16 --num_layers=2 --seed=909 --num_epochs=100 --learning_rate=0.001 --dropout=0.0 --batch_size=4 --do_merge_lsf --l2_weight=0.000 --imbalance_loss_weight=0.0 --benchmark=twins --method=nn --early_stopping_patience=7 --do_not_save_predictions --validation_set_fraction=0.24 --test_set_fraction=0.2 --with_propensity_batch --early_stopping_on_pehe --experiment_index=27 --num_treatments=2 --output_directory=$FOLDER_PATH &> /dev/null
+python ./perfect_match/apps/main.py --dataset=./ --with_rnaseq --do_train --do_hyperopt --num_hyperopt_runs=10 --do_evaluate --fraction_of_data_set=1.00 --num_units=16 --num_layers=2 --seed=909 --num_epochs=100 --learning_rate=0.001 --dropout=0.0 --batch_size=4 --do_merge_lsf --l2_weight=0.000 --imbalance_loss_weight=0.0 --benchmark=jobs --method=nn --early_stopping_patience=7 --do_not_save_predictions --validation_set_fraction=0.24 --test_set_fraction=0.2 --with_propensity_batch --early_stopping_on_pehe --experiment_index=27 --num_treatments=2 --output_directory=$FOLDER_PATH &> /dev/null
 
 count=$(cat $FOLDER_PATH/summary.txt | grep Best_test_score  | wc -l)
 
