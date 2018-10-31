@@ -45,7 +45,7 @@ If you reference or use our methodology, code or results in your work, please co
     - To run BART, you need to have the R-packages `rJava` and `bartMachine` installed. See https://github.com/kapelner/bartMachine for installation instructions. Note that `rJava` requires a working Java installation as well.
     - To run Causal Forests, you need to have the R-package `grf` installed. See https://github.com/grf-labs/grf for installation instructions.
     - To reproduce the paper's figures, you need to have the R-package `latex2exp` installed. See https://cran.r-project.org/web/packages/latex2exp/vignettes/using-latex2exp.html for installation instructions.
-- For the python dependencies, see `setup.py`. You can use `pip install .` to install the python dependencies. Note the installation of `rpy2` will fail if you do not have a working R installation on your system (see above).
+- For the python dependencies, see `setup.py`. You can use `pip install .` to install the perfect_match package and the python dependencies. Note the installation of `rpy2` will fail if you do not have a working R installation on your system (see above).
 
 #### Reproducing the experiments
 
