@@ -92,7 +92,32 @@ If you reference or use our methodology, code or results in your work, please co
     - Example 4: `run_results.sh ./results/pm_news16a7k_pbm_mse_1 news-16` to get the results for "PM" on News-16.
     - Repeat for all evaluated method / benchmark combinations.
 
-##### TCGA Step-by-step
+##### News-8 Matching Percentage (Figure 2) Step-by-step
+
+- Navigate to the directory containing this file.
+- Create a folder to hold the experimental results `mkdir -p results`.
+- Run `python ./perfect_match/apps/run_all_experiments.py ./perfect_match/apps news_matching_percentage ./data ./results`
+    - The script will print all the command line configurations (450 in total) you need to run to obtain the experimental results to reproduce the News results.
+- Run the command line configurations from the previous step in your favorite compute environment.
+- After the experiments have concluded, use `run_results.sh` to calculate the summary statistics mean +- standard deviation over all repeated runs.
+    - Example 1: `run_results.sh ./results/pm_news8a10k0.10p_pbm_mse_1 news-8`, where `news-8` indicates that you want results for the News-8 dataset and `0.10p` indicates 10% matched samples per batch, to get the results for "PM" on News-8 with 10% matched samples per batch.
+    - Example 2: `run_results.sh ./results/pm_news8a10k0.20p_pbm_mse_1 news-8` to get the results for "PM" on News-8 with 20% matched samples per batch.
+    - Repeat for all evaluated percentages of matched samples.
+
+##### News-8 Treatment Assignment (Figure 3) Step-by-step
+
+- Navigate to the directory containing this file.
+- Create a folder to hold the experimental results `mkdir -p results`.
+- Run `python ./perfect_match/apps/run_all_experiments.py ./perfect_match/apps news_treatment_assignment ./data ./results`
+    - The script will print all the command line configurations (1750 in total) you need to run to obtain the experimental results to reproduce the News results.
+- Run the command line configurations from the previous step in your favorite compute environment.
+- After the experiments have concluded, use `run_results.sh` to calculate the summary statistics mean +- standard deviation over all repeated runs.
+    - Example 1: `run_results.sh ./results/pm_news8a5k_pbm_mse_1 news-8`, where `news-8` indicates that you want results for the News-8 dataset and `5k` indicates kappa=5, to get the results for "PM" on News-8 with treatment assignment bias factor kappa set to 5.
+    - Example 2: `run_results.sh ./results/pm_news8a7k_pbm_mse_1 news-8`to get the results for "PM" on News-8 with treatment assignment bias factor kappa set to 7.
+    - Repeat for all evaluated methods / levels of kappa combinations.
+
+
+##### TCGA Hidden Confounding Step-by-step (Figure 4)
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -100,7 +125,7 @@ If you reference or use our methodology, code or results in your work, please co
     - The script will print all the command line configurations (180 in total) you need to run to obtain the experimental results to reproduce the TCGA results.
 - Run the command line configurations from the previous step in your favorite compute environment.
 - After the experiments have concluded, use `run_results.sh` to calculate the summary statistics mean +- standard deviation over all repeated runs.
-    - Example 1: `run_results.sh ./results/pm_tcga8a10k18478f_pbm_mse_1 tcga`, where `tcga` indicates that you want results for the TCGA dataset, to get the results for "PM" with 10% hidden confounding on TCGA.
+    - Example 1: `run_results.sh ./results/pm_tcga8a10k18478f_pbm_mse_1 tcga`, where `tcga` indicates that you want results for the TCGA dataset and `18478f` indicates the use of 18478 (out of 20531) features with the rest acting as hidden confounders, to get the results for "PM" with 10% hidden confounding on TCGA.
     - Example 2: `run_results.sh ./results/pm_tcga8a10k16425f_pbm_mse_1 tcga` to get the results for "PM" with 20% hidden confounding on TCGA.
     - Example 3: `run_results.sh ./results/pm_tcga8a10k14372f_pbm_mse_1 tcga` to get the results for "PM" with 30% hidden confounding on TCGA.
     - Repeat for all evaluated method / degree of hidden confounding combinations.
