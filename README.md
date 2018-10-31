@@ -32,7 +32,12 @@ If you reference or use our methodology, code or results in your work, please co
 #### Requirements and dependencies
 
 - This project was designed for use with Python 2.7. We can not guarantee and have not tested compability with Python 3.
-- To run the TCGA and News benchmarks you need to download the SQLite databases containing the raw data samples for these benchmarks (`news.db` and `tcga.db`).
+
+- To run the IHDP benchmark, you need to download the raw IHDP data folds as used by Johanson et al. available at [this link](http://www.mit.edu/~fredrikj/files/IHDP-1000.tar.gz).
+    - After downloading IHDP-1000.tar.gz, you must extract the files into the `./perfect_match/data_access/ihdp` directory relative to this file.
+    - e.g. using: `tar xvzf IHDP-1000.tar.gz -C ./perfect_match/data_access/ihdp`
+    - Ensure that the files `ihdp_npci_1-1000.train.npz` and `ihdp_npci_1-1000.test.npz` are present in the `./perfect_match/data_access/ihdp` directory.
+- To run the TCGA and News benchmarks, you need to download the SQLite databases containing the raw data samples for these benchmarks (`news.db` and `tcga.db`).
     - You can download the raw data under these links: [tcga.db](https://polybox.ethz.ch/index.php/s/OrwKOXHToZfxVyE) and [news.db](https://polybox.ethz.ch/index.php/s/fRQZREF528AfD5Z).
     - Note that you need around 10GB of free disk space to store the databases.
     - Save the database files to the `./data` directory relative to this file in order to be compatible with the step-by-step guides below or adjust the commands accordingly.
