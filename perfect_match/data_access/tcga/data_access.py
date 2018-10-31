@@ -68,8 +68,9 @@ class DataAccess(BatchAugmentation):
         self.treatment_lists = None
         self.tcga_num_features = int(np.rint(kwargs["tcga_num_features"]))
         self.db = None
-        min_path = os.path.join(data_dir, DataAccess.MIN_FILE_NAME)
-        max_path = os.path.join(data_dir, DataAccess.MAX_FILE_NAME)
+        this_directory = os.path.dirname(os.path.realpath(__file__))
+        min_path = os.path.join(this_directory, DataAccess.MIN_FILE_NAME)
+        max_path = os.path.join(this_directory, DataAccess.MAX_FILE_NAME)
         if os.path.exists(min_path) and \
            os.path.exists(max_path):
             self.min_val, self.max_val = np.load(min_path)[:-1], np.load(max_path)[:-1]
