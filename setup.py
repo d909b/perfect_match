@@ -25,7 +25,7 @@ setup(
     author='Patrick Schwab',
     author_email='patrick.schwab@hest.ethz.ch',
     license=open('LICENSE.txt').read(),
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     install_requires=[
         "Keras >= 1.2.2",
         "tensorflow == 1.4.0",
