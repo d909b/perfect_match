@@ -84,7 +84,7 @@ If you reference or use our methodology, code or results in your work, please co
 - Create a folder to hold the experimental results `mkdir -p results`.
 - Run `python ./perfect_match/apps/run_all_experiments.py ./perfect_match/apps news ./data ./results`
     - The script will print all the command line configurations (2400 in total) you need to run to obtain the experimental results to reproduce the News results.
-    - Note that we evaluate all listed methods on News-2/News-4/News-8/News-16. No results are taken from the respective original authors' manuscripts.
+    - Note that we evaluate all listed methods on News-2/News-4/News-8/News-16. 
 - Run the command line configurations from the previous step in your favorite compute environment.
 - After the experiments have concluded, use `run_results.sh` to calculate the summary statistics mean +- standard deviation over all repeated runs.
     - Example 1: `run_results.sh ./results/pm_news2a10k_pbm_mse_1 news-2`, where `news-2` indicates that you want results for the News-2 dataset, to get the results for "PM" on News-2. Note that the folder path must match exactly with the type of dataset requested (news-2 <> news-2), otherwise the shown summary statistics will not be the right metrics.
