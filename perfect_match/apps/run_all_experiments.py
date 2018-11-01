@@ -96,7 +96,7 @@ command_params_mse = " "
 command_params_pehe = "--early_stopping_on_pehe "
 
 command_template = "mkdir -p {OUTPUT_FOLDER}/{NAME}/run_{i}/ && " \
-                   "{SUB_COMMAND} "
+                   "CUDA_VISIBLE_DEVICES='' {SUB_COMMAND} "
 
 
 def get_dataset_params(DATASET):
