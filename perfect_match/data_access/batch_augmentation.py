@@ -22,10 +22,6 @@ from propensity_batch import PropensityBatch
 
 
 class BatchAugmentation(object):
-    def propensity_list_is_initialised(self):
-        return self.batch_augmentation is not None and \
-               self.batch_augmentation.propensity_list_is_initialised()
-
     def make_propensity_lists(self, train_ids, benchmark_implementation, **kwargs):
         match_on_covariates = kwargs["match_on_covariates"]
         if match_on_covariates:
@@ -35,8 +31,11 @@ class BatchAugmentation(object):
         self.batch_augmentation.make_propensity_lists(train_ids, benchmark_implementation)
 
     def enhance_batch_with_propensity_matches(self, benchmark, treatment_data, input_data, batch_y,
-                                              match_probability=1.0):
+                                              match_probability=1.0, num_randomised_neighbours=6):
         if self.batch_augmentation is not None:
-            self.batch_augmentation.enhance_batch_with_propensity_matches(benchmark, treatment_data,
-                                                                          input_data, batch_y,
-                                                                          match_probability)
+            return self.batch_augmentation.enhance_batch_with_propensity_matches(benchmark, treatment_data,
+                                                                                 input_data, batch_y,
+                                                                                 match_probability,
+                                                                                 num_randomised_neighbours)
+        else:
+            raise Exception("Batch augmentation mode must be set.")

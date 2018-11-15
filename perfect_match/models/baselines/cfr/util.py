@@ -32,7 +32,7 @@ def build_mlp(x, num_layers=1, num_units=16, dropout=0.0,
         h_in[i + 1] = tf.nn.dropout(h_in[i + 1], 1.0 - dropout)
 
     h_rep = h_in[len(h_in) - 1]
-    return h_rep
+    return h_rep, weights_in, biases_in
 
 
 def validation_split(D_exp, val_fraction):

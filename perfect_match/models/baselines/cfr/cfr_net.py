@@ -2,7 +2,9 @@
 from __future__ import print_function
 
 import sys
+import numpy as np
 from util import *
+import tensorflow as tf
 from perfect_match.models.pehe_loss import pehe_loss
 from perfect_match.models.model_eval import ModelEvaluation
 
@@ -102,9 +104,9 @@ class CFRNet(object):
             dim_out = dim_in
 
         ''' Construct input/representation layers '''
-        h_rep = build_mlp(self.x, num_representation_layers, dim_in,
-                          self.dropout_representation, self.nonlinearity,
-                          weight_initialisation_std=weight_initialisation_std)
+        h_rep, weights_in, biases_in = build_mlp(self.x, num_representation_layers, dim_in,
+                                                 self.dropout_representation, self.nonlinearity,
+                                                 weight_initialisation_std=weight_initialisation_std)
 
         # Normalize representation.
         h_rep_norm = h_rep / safe_sqrt(tf.reduce_sum(tf.square(h_rep), axis=1, keep_dims=True))

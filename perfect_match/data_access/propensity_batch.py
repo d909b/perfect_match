@@ -57,7 +57,7 @@ class PropensityBatch(object):
             self.treatment_lists.append(sorted(this_treatment_data, key=lambda x: x[1][treatment_idx]))
         print("INFO: Prepared propensity lists.", file=sys.stderr)
 
-    def get_closest_in_propensity_lists(self, x, t, k=6):
+    def get_closest_in_propensity_lists(self, x, t, k):
         if self.pca is None:
             propensity_score = self.clf.predict_proba(x.reshape(1, -1))[0, t]
         else:
@@ -83,12 +83,13 @@ class PropensityBatch(object):
         return self.treatment_lists[t][idx][0], self.treatment_lists[t][idx][-1]
 
     def enhance_batch_with_propensity_matches(self, benchmark, treatment_data, input_data, batch_y,
-                                              match_probability=1.0):
+                                              match_probability=1.0, num_randomised_neighbours=6):
         all_matches = []
         for treatment_idx in range(benchmark.get_num_treatments()):
             this_treatment_indices = np.where(treatment_data == treatment_idx)[0]
             matches = map(lambda t:
-                          map(lambda idx: self.get_closest_in_propensity_lists(input_data[idx], t, k=6),
+                          map(lambda idx: self.get_closest_in_propensity_lists(input_data[idx], t,
+                                                                               k=num_randomised_neighbours),
                               this_treatment_indices),
                           [t_idx for t_idx in range(benchmark.get_num_treatments()) if t_idx != treatment_idx])
             all_matches += reduce(lambda x, y: x + y, matches)

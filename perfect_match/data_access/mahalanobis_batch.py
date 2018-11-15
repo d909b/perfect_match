@@ -49,11 +49,13 @@ class MahalanobisBatch(object):
         self.treatment_ids = [ids[treatment_data == t]
                               for t in range(benchmark.get_num_treatments())]
 
-    def get_closest_in_propensity_lists(self, x, t, k=6):
+    def get_closest_in_propensity_lists(self, x, t, k):
+        max_k = self.ball_trees[t].data.shape[0]
+        adjusted_k = min(k, max_k)
         if self.pca is None:
-            distance, indices = self.ball_trees[t].query(x.reshape(1, -1), k=k)
+            distance, indices = self.ball_trees[t].query(x.reshape(1, -1), k=adjusted_k)
         else:
-            distance, indices = self.ball_trees[t].query(self.pca.transform(x.reshape(1, -1)), k=k)
+            distance, indices = self.ball_trees[t].query(self.pca.transform(x.reshape(1, -1)), k=adjusted_k)
 
         idx = np.random.randint(0, len(indices))
         idx = indices[0][idx]
@@ -62,12 +64,13 @@ class MahalanobisBatch(object):
         return chosen_sample, chosen_id
 
     def enhance_batch_with_propensity_matches(self, benchmark, treatment_data, input_data, batch_y,
-                                              match_probability=1.0):
+                                              match_probability=1.0, num_randomised_neighbours=6):
         all_matches = []
         for treatment_idx in range(benchmark.get_num_treatments()):
             this_treatment_indices = np.where(treatment_data == treatment_idx)[0]
             matches = map(lambda t:
-                          map(lambda idx: self.get_closest_in_propensity_lists(input_data[idx], t, k=6),
+                          map(lambda idx: self.get_closest_in_propensity_lists(input_data[idx], t,
+                                                                               k=num_randomised_neighbours),
                               this_treatment_indices),
                           [t_idx for t_idx in range(benchmark.get_num_treatments())
                            if t_idx != treatment_idx])

@@ -34,7 +34,6 @@ class DataAccess(BatchAugmentation):
         self.x, self.y0, self.y1, self.z, self.e, self.train_indices, self.test_indices =\
             self.generate_new_dataset(seed, experiment_index)
         self.db = None
-        self.treatment_lists = None
         self.connect()
         self.setup_schema()
         self.initialise_data()
@@ -205,13 +204,15 @@ class DataAccess(BatchAugmentation):
         treatment_data, batch_y = zip(*assignments)
         treatment_data = np.array(treatment_data)
 
-        if args["with_propensity_batch"] and self.treatment_lists is not None and is_train:
+        if args["with_propensity_batch"] and is_train:
             propensity_batch_probability = float(args["propensity_batch_probability"])
+            num_randomised_neighbours = int(np.rint(args["num_randomised_neighbours"]))
             ihdp_data, treatment_data, batch_y = self.enhance_batch_with_propensity_matches(benchmark,
                                                                                             treatment_data,
                                                                                             ihdp_data,
                                                                                             batch_y,
-                                                                                            propensity_batch_probability)
+                                                                                            propensity_batch_probability,
++                                                                                           num_randomised_neighbours)
 
         input_data = np.asarray(ihdp_data).astype(np.float32)
 

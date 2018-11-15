@@ -48,24 +48,28 @@ default_params = "--dataset={DATASET_PATH} " \
                  "--early_stopping_patience={EARLY_STOPPING_PATIENCE} " \
                  "--do_not_save_predictions " \
                  "--propensity_batch_probability={PBM_PROBABILITY} " \
-                 "--experiment_index={i} "
+                 "--experiment_index={i} " \
+                 "--num_randomised_neighbours=6 "
 
-command_params_pbm = "--method=nn+ " \
+command_params_pbm = "--method={MODEL_TYPE} " \
                      "--with_propensity_batch " \
                      "--imbalance_loss_weight=0.0 "
 
-command_params_pbm_no_tarnet = "--method=nn+ " \
+command_params_pbm_no_tarnet = "--method={MODEL_TYPE} " \
                                "--with_propensity_batch " \
                                "--imbalance_loss_weight=0.0 " \
                                "--do_not_use_tarnet "
 
-command_params_pbm_mahalanobis = "--method=nn+ " \
+command_params_pbm_mahalanobis = "--method={MODEL_TYPE} " \
                                  "--with_propensity_batch " \
                                  "--imbalance_loss_weight=0.0 " \
                                  "--match_on_covariates "
 
 command_params_psm = "--method=psm " \
                      "--imbalance_loss_weight=0.0 "
+
+command_params_psmpbm = "--method=psmpbm " \
+                        "--imbalance_loss_weight=0.0 "
 
 command_params_ganite = "--method=ganite " \
                         "--imbalance_loss_weight=0.0 "
@@ -97,6 +101,14 @@ command_params_pehe = "--early_stopping_on_pehe "
 
 command_template = "mkdir -p {OUTPUT_FOLDER}/{NAME}/run_{i}/ && " \
                    "CUDA_VISIBLE_DEVICES='' {SUB_COMMAND} "
+
+
+def model_is_pbm_variant(model_type):
+    return model_type == "pbm" or model_type == "pbm_mahal" or model_type == "pbm_no_tarnet"
+
+
+def dataset_is_binary_and_has_counterfactuals():
+    return DATASET == "ihdp"
 
 
 def get_dataset_params(DATASET):
@@ -196,6 +208,8 @@ def run(DATASET, DATASET_PATH, OUTPUT_FOLDER, SUB_COMMAND, LOG_FILE):
                 command_params = command_params_pbm_no_tarnet
             elif model_type == "psm":
                 command_params = command_params_psm
+            elif model_type == "psmpbm":
+                command_params = command_params_psmpbm
             elif model_type == "knn":
                 command_params = command_params_knn
             elif model_type == "tarnet":
@@ -212,6 +226,12 @@ def run(DATASET, DATASET_PATH, OUTPUT_FOLDER, SUB_COMMAND, LOG_FILE):
                 command_params = command_params_bart
             else:
                 command_params = command_params_tarnet
+
+            if model_is_pbm_variant(model_type):
+                if dataset_is_binary_and_has_counterfactuals():
+                    command_params = command_params.format(MODEL_TYPE="nn")
+                else:
+                    command_params = command_params.format(MODEL_TYPE="nn+")
 
             if early_stopping_type == "pehe":
                 command_early_stopping = command_params_pehe

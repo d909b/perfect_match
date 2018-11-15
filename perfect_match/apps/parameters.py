@@ -80,6 +80,8 @@ def parse_parameters():
                         help="Index into repeatable experiments' datasets.")
     parser.add_argument("--num_treatments", type=int, default=2,
                         help="Number of treatments to use when benchmark supports variable numbers of treatments.")
+    parser.add_argument("--num_randomised_neighbours", type=int, default=6,
+                        help="Number of neighbours to use for randomised match assignment in PM.")
     parser.add_argument("--strength_of_assignment_bias", type=int, default=10,
                         help="Strenght of assignment bias (kappa) to use for semi-synthetic datasets.")
     parser.add_argument("--propensity_batch_probability", type=float, default=1.0,

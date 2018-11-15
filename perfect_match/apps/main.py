@@ -35,6 +35,8 @@ from perfect_match.apps.util import time_function
 from perfect_match.models.model_eval import ModelEvaluation
 from perfect_match.apps.evaluate import EvaluationApplication
 from perfect_match.data_access.generator import make_keras_generator
+from perfect_match.models.baselines.psm import PSM
+from perfect_match.models.baselines.psm_pbm import PSM_PBM
 from perfect_match.models.baselines.ganite import GANITE
 from perfect_match.models.baselines.knn import KNearestNeighbours
 from perfect_match.models.baselines.causal_forest import CausalForest
@@ -43,7 +45,6 @@ from perfect_match.models.baselines.neural_network import NeuralNetwork
 from perfect_match.models.baselines.gaussian_process import GaussianProcess
 from perfect_match.models.baselines.tf_neural_network import NeuralNetwork as TFNeuralNetwork
 from perfect_match.models.baselines.gradientboosted import GradientBoostedTrees
-from perfect_match.models.baselines.psm import PSM
 from perfect_match.models.baselines.bart import BayesianAdditiveRegressionTrees
 from perfect_match.models.baselines.ordinary_least_squares import OrdinaryLeastSquares1, OrdinaryLeastSquares2
 from perfect_match.apps.parameters import clip_percentage, parse_parameters
@@ -175,6 +176,9 @@ class MainApplication(EvaluationApplication):
         with_propensity_dropout = self.args["with_propensity_dropout"]
         with_pehe_loss = self.args["with_pehe_loss"]
         use_tarnet = self.args["use_tarnet"]
+        match_on_covariates = self.args["match_on_covariates"]
+        num_randomised_neighbours = int(np.rint(self.args["num_randomised_neighbours"]))
+        propensity_batch_probability = float(self.args["propensity_batch_probability"])
         strength_of_assignment_bias = int(np.rint(self.args["strength_of_assignment_bias"]))
         ganite_weight_alpha = float(self.args["ganite_weight_alpha"])
         ganite_weight_beta = float(self.args["ganite_weight_beta"])
@@ -201,7 +205,10 @@ class MainApplication(EvaluationApplication):
             "use_tarnet": use_tarnet,
             "strength_of_assignment_bias": strength_of_assignment_bias,
             "ganite_weight_alpha": ganite_weight_alpha,
-            "ganite_weight_beta": ganite_weight_beta
+            "ganite_weight_beta": ganite_weight_beta,
+            "propensity_batch_probability": propensity_batch_probability,
+            "match_on_covariates": match_on_covariates,
+            "num_randomised_neighbours": num_randomised_neighbours,
         }
 
         num_losses = 1
@@ -357,6 +364,7 @@ class MainApplication(EvaluationApplication):
             'xgb': GradientBoostedTrees,
             'gp': GaussianProcess,
             'psm': PSM,
+            'psmpbm': PSM_PBM,
             'ganite': GANITE,
         }
 

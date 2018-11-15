@@ -65,7 +65,6 @@ class DataAccess(BatchAugmentation):
 
     def __init__(self, data_dir, **kwargs):
         self.data_dir = data_dir
-        self.treatment_lists = None
         self.tcga_num_features = int(np.rint(kwargs["tcga_num_features"]))
         self.db = None
         this_directory = os.path.dirname(os.path.realpath(__file__))
@@ -391,13 +390,15 @@ class DataAccess(BatchAugmentation):
         if tcga_num_features > 0:
             rnaseq_data = benchmark.select_features(rnaseq_data)
 
-        if args["with_propensity_batch"] and self.treatment_lists is not None and is_train:
+        if args["with_propensity_batch"] and is_train:
             propensity_batch_probability = float(args["propensity_batch_probability"])
+            num_randomised_neighbours = int(np.rint(args["num_randomised_neighbours"]))
             rnaseq_data, treatment_data, batch_y = self.enhance_batch_with_propensity_matches(benchmark,
                                                                                               treatment_data,
                                                                                               rnaseq_data,
                                                                                               batch_y,
-                                                                                              propensity_batch_probability)
+                                                                                              propensity_batch_probability,
+                                                                                              num_randomised_neighbours)
 
         batch_y = np.array(batch_y)
         batch_x = [
