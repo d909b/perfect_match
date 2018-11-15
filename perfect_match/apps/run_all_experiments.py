@@ -130,7 +130,7 @@ def get_dataset_params(DATASET):
         num_repeats = 10
         treatment_set = [2]
         kappa_set = [0]
-        model_set = ["pbm", "pbm_mahal", "pbm_no_tarnet", "psm"]
+        model_set = ["pbm", "pbm_mahal", "pbm_no_tarnet", "psm", "psmpbm"]
         es_set = ["mse"]*len(model_set)
         pbm_percentages = [1.0]*len(es_set)
     elif DATASET == "tcga":  # Influence of higher hidden confounding - Fig. 4
@@ -177,7 +177,7 @@ def get_dataset_params(DATASET):
             kappa_set = [10, 10, 10, 7]
             model_set = [
                 "pbm", "pbm_mahal", "pbm_no_tarnet",
-                "knn", "psm",
+                "knn", "psm", "psmpbm",
                 "rf", "cf", "bart",
                 "ganite", "tarnetpd", "tarnet", "cfrnet"
             ]
