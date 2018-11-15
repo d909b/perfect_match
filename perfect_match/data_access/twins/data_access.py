@@ -277,7 +277,7 @@ class DataAccess(BatchAugmentation):
                                                                                              input_data,
                                                                                              batch_y,
                                                                                              propensity_batch_probability,
-+                                                                                            num_randomised_neighbours)
+                                                                                             num_randomised_neighbours)
 
         input_data = input_data.astype(np.float32)
         input_data = np.array(map(self.standardise_entry, input_data))

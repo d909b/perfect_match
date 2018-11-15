@@ -186,7 +186,7 @@ class DataAccess(BatchAugmentation):
                                                                                             news_data,
                                                                                             batch_y,
                                                                                             propensity_batch_probability,
-+                                                                                           num_randomised_neighbours)
+                                                                                            num_randomised_neighbours)
 
         input_data = np.asarray(news_data).astype(np.float32)
 

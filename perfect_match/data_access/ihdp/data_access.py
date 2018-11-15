@@ -240,7 +240,7 @@ class DataAccess(BatchAugmentation):
                                                                                             ihdp_data,
                                                                                             batch_y,
                                                                                             propensity_batch_probability,
-+                                                                                           num_randomised_neighbours)
+                                                                                            num_randomised_neighbours)
 
         input_data = np.asarray(ihdp_data).astype(np.float32)
 
