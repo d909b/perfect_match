@@ -1,5 +1,7 @@
 ## Perfect Match: A Simple Method for Learning Representations For Counterfactual Inference With Neural Networks
 
+![TARNET](http://schwabpatrick.com/img/tarnet.png)
+
 Perfect Match (PM) is a method for learning to estimate individual treatment effect (ITE) using neural networks. PM is easy to implement,
 compatible with any architecture, does not add computational complexity or hyperparameters, and extends to any number of treatments. This repository contains the source code used to evaluate PM and most of the existing state-of-the-art methods at the time of publication of [our manuscript](https://arxiv.org/abs/1810.00656) (Oct 2018). PM and the presented experiments are described in detail in our paper. Since we performed one of the most comprehensive evaluations to date with four different datasets with varying characteristics, this repository may serve as a benchmark suite for developing your own methods for estimating causal effects using machine learning methods. In particular, the source code is designed to be easily extensible with (1) new methods and (2) new benchmark datasets.
 
