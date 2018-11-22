@@ -108,7 +108,7 @@ If you reference or use our methodology, code or results in your work, please co
 - Ensure that you have run the `./run_results.sh` script at least once on `./results/pm_ihdp2a0k_pbm_mse_1` and that the summary.txt file was created in `./results/pm_ihdp2a0k_pbm_mse_1`.
 - Navigate to the `./results/pm_ihdp2a0k_pbm_mse_1` directory.
 - Run the following scripts to obtain mse.txt, pehe.txt and nn_pehe.txt for use with the `perfect_match/visualisation/cor_plots.R` script:
-    - `cat summary.txt | grep "val_cf MSE" | awk '{print $7}' > mse.txt`
+    - `cat summary.txt | grep "val_f MSE" | awk '{print $7}' > mse.txt`
     - `cat summary.txt | grep "val_pehe"  | awk '{print $7}' > pehe.txt`
     - `cat summary.txt | grep "val_pehe"  | awk '{print $10}' > nn_pehe.txt`
 
