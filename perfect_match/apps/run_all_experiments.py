@@ -120,7 +120,12 @@ def get_dataset_params(DATASET):
         num_repeats = 1000
         treatment_set = [2]
         kappa_set = [0]
-        model_set = ["pbm", "pbm_mahal", "pbm_no_tarnet"]
+        model_set = [
+            "pbm", "pbm_mahal", "pbm_no_tarnet",
+            "knn", "psm", "psmpbm",
+            "rf", "cf", "bart",
+            "ganite", "tarnetpd", "tarnet", "cfrnet"
+        ]
         es_set = ["mse"]*len(model_set)
         pbm_percentages = [1.0]*len(es_set)
     elif DATASET == "jobs":  # Jobs - Table 3 (Jobs)

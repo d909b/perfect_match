@@ -65,7 +65,7 @@ If you reference or use our methodology, code or results in your work, please co
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
 - Run `python ./perfect_match/apps/run_all_experiments.py ./perfect_match/apps ihdp ./data ./results`
-    - The script will print all the command line configurations (3000 in total) you need to run to obtain the experimental results to reproduce the IHDP results.
+    - The script will print all the command line configurations (13000 in total) you need to run to obtain the experimental results to reproduce the IHDP results.
     - Note that we only evaluate PM, + on X, and + MLP on IHDP. All other results are taken from the respective original authors' manuscripts.
 - Run the command line configurations from the previous step in your favorite compute environment.
 - After the experiments have concluded, use `./run_results.sh` to calculate the summary statistics mean +- standard deviation over all repeated runs.
