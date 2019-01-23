@@ -45,7 +45,7 @@ License: MIT, see LICENSE.txt
     - If the `./run_results.sh` script produces errors, one or multiple of your runs may have failed to complete successfully. You can check the run's run.txt file to see whether there have been any errors.
 - You can also reproduce the figures in our manuscript by running the R-scripts in `perfect_match/visualisation/`
 
-##### IHDP Step-by-step
+##### IHDP
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -58,7 +58,7 @@ License: MIT, see LICENSE.txt
     - Example 2: `./run_results.sh ./results/pm_ihdp2a0k_pbm_mahal_mse_1 ihdp` to get the results for "+ on X" on IHDP.
     - Example 3: `./run_results.sh ./results/pm_ihdp2a0k_pbm_no_tarnet_mse_1 ihdp` to get the results for "+ MLP" on IHDP.
 
-##### Jobs Step-by-step
+##### Jobs
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -72,7 +72,7 @@ License: MIT, see LICENSE.txt
     - Example 3: `./run_results.sh ./results/pm_jobs2a0k_pbm_no_tarnet_mse_1 jobs` to get the results for "+ MLP" on Jobs.
     - Example 4: `./run_results.sh ./results/pm_jobs2a0k_psm_mse_1 jobs` to get the results for "PSM" on Jobs.
 
-##### News-2/News-4/News-8/News-16 Step-by-step
+##### News-2/News-4/News-8/News-16
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -86,7 +86,7 @@ License: MIT, see LICENSE.txt
     - Example 4: `./run_results.sh ./results/pm_news16a7k_pbm_mse_1 news-16` to get the results for "PM" on News-16.
     - Repeat for all evaluated method / benchmark combinations.
 
-##### Correlation MSE and NN-PEHE with PEHE (Figure 1)
+##### Correlation MSE and NN-PEHE with PEHE (Figure 3)
 
 - Go through the IHDP step-by-step above.
 - Ensure that you have run the `./run_results.sh` script at least once on `./results/pm_ihdp2a0k_pbm_mse_1` and that the summary.txt file was created in `./results/pm_ihdp2a0k_pbm_mse_1`.
@@ -98,7 +98,7 @@ License: MIT, see LICENSE.txt
 - You can use the `perfect_match/visualisation/corr_plot.R` file to reproduce the correlation plots in Figure 1.
 
 
-##### News-8 Matching Percentage (Figure 2) Step-by-step
+##### News-8 Matching Percentage (Figure 4)
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -111,7 +111,7 @@ License: MIT, see LICENSE.txt
     - Repeat for all evaluated percentages of matched samples.
 - Your results should match those found in the `perfect_match/visualisation/percentage_plot.R` file.
 
-##### News-8 Treatment Assignment (Figure 3) Step-by-step
+##### News-8 Treatment Assignment (Figure 6)
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
@@ -125,7 +125,7 @@ License: MIT, see LICENSE.txt
 - Your results should match those found in the `perfect_match/visualisation/kappa_plot.R` file.
 
 
-##### TCGA Hidden Confounding Step-by-step (Figure 4)
+##### TCGA Hidden Confounding (Figure 7)
 
 - Navigate to the directory containing this file.
 - Create a folder to hold the experimental results `mkdir -p results`.
