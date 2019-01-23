@@ -1,5 +1,5 @@
 """
-Copyright (C) 2018  Patrick Schwab, ETH Zurich
+Copyright (C) 2019  anonymised author, anonymised institution
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation
@@ -27,9 +27,9 @@ setup(
               'perfect_match.models',
               'perfect_match.models.baselines', 'perfect_match.models.baselines.cfr', 'perfect_match.models.baselines.ganite_package',
               'perfect_match.models.benchmarks'],
-    url='schwabpatrick.com',
-    author='Patrick Schwab',
-    author_email='patrick.schwab@hest.ethz.ch',
+    url='anonymised.com',
+    author='anonymised',
+    author_email='anonymised',
     license=open('LICENSE.txt').read(),
     long_description=open('README.md').read(),
     install_requires=[

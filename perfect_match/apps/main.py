@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 """
-Copyright (C) 2018  Patrick Schwab, ETH Zurich
+Copyright (C) 2019  anonymised author, anonymised institution
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation
