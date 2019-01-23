@@ -37,7 +37,7 @@ License: MIT, see LICENSE.txt
 #### Reproducing the experiments
 
 - Make sure you have all the requirements listed above.
-- You can use the script `perfect_match/apps/run_all_experiments.py` to obtain the exact parameters used with `main.py` to reproduce the experimental results in [our paper](https://arxiv.org/abs/1810.00656).
+- You can use the script `perfect_match/apps/run_all_experiments.py` to obtain the exact parameters used with `main.py` to reproduce the experimental results in our paper.
     - The `perfect_match/apps/run_all_experiments.py` script prints the command line parameters that have to be run, one command per line.
     - Note that we ran several thousand experiments which can take a while if evaluated sequentially. We therefore suggest to run the commands in parallel using, e.g., a compute cluster.
     - The original experiments reported in our paper were run on Intel CPUs. We found that running the experiments on GPUs can produce ever so slightly different results for the same experiments.
