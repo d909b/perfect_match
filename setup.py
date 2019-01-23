@@ -20,7 +20,13 @@ from distutils.core import setup
 setup(
     name='perfect_match',
     version='1.0.0',
-    packages=['perfect_match', 'perfect_match.apps'],
+    packages=['perfect_match', 'perfect_match.apps',
+              'perfect_match.data_access',
+              'perfect_match.data_access.ihdp', 'perfect_match.data_access.jobs',
+              'perfect_match.data_access.news', 'perfect_match.data_access.tcga', 'perfect_match.data_access.twins',
+              'perfect_match.models',
+              'perfect_match.models.baselines', 'perfect_match.models.baselines.cfr', 'perfect_match.models.baselines.ganite_package',
+              'perfect_match.models.benchmarks'],
     url='schwabpatrick.com',
     author='Patrick Schwab',
     author_email='patrick.schwab@hest.ethz.ch',
@@ -34,6 +40,6 @@ setup(
         "h5py >= 2.6.0",
         "scikit-learn == 0.19.0",
         "numpy >= 1.14.1",
-        "rpy2 >= 2.8.6"
+        "rpy2 == 2.8.6"
     ]
 )
