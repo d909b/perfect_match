@@ -40,7 +40,7 @@ If you reference or use our methodology, code or results in your work, please co
     - e.g. using: `tar xvzf IHDP-1000.tar.gz -C ./perfect_match/data_access/ihdp`
     - Ensure that the files `ihdp_npci_1-1000.train.npz` and `ihdp_npci_1-1000.test.npz` are present in the `./perfect_match/data_access/ihdp` directory.
 - To run the TCGA and News benchmarks, you need to download the SQLite databases containing the raw data samples for these benchmarks (`news.db` and `tcga.db`).
-    - You can download the raw data under these links: [tcga.db](https://polybox.ethz.ch/index.php/s/OrwKOXHToZfxVyE) and [news.db](https://polybox.ethz.ch/index.php/s/fRQZREF528AfD5Z).
+    - You can download the raw data under these links: [tcga.db](https://paperdatasets.s3.amazonaws.com/tcga.db) and [news.db](https://paperdatasets.s3.amazonaws.com/news.db).
     - Note that you need around 10GB of free disk space to store the databases.
     - Save the database files to the `./data` directory relative to this file in order to be compatible with the step-by-step guides below or adjust the commands accordingly.
 - To run BART, Causal Forests and to reproduce the figures you need to have [R](https://www.r-project.org/) installed. See https://www.r-project.org/ for installation instructions.
